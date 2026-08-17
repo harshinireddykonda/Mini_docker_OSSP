@@ -1,31 +1,39 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+#include "../include/shell.h"
+#include "../include/input.h"
 
 int main()
 {
-    char input[1024];
+    char *line;
 
-    printf("=====================================\n");
-    printf(" Mini Docker Container Manager\n");
-    printf("=====================================\n");
+    printf("=================================\n");
+    printf("%s Version %s\n", SHELL_NAME, VERSION);
+    printf("=================================\n");
 
     while (1)
     {
         printf("MiniDocker> ");
 
-        if (fgets(input, sizeof(input), stdin) == NULL)
-            break;
+        line = read_line();
 
-        input[strcspn(input, "\n")] = '\0';
-
-        if (strcmp(input, "exit") == 0)
+        if (strcmp(line, "exit") == 0)
         {
-            printf("Exiting MiniDocker...\n");
+            free(line);
             break;
         }
 
-        printf("You entered: %s\n", input);
+        if (strlen(line) != 0)
+        {
+            printf("You entered: %s\n", line);
+        }
+
+        free(line);
     }
+
+    printf("Goodbye!\n");
 
     return 0;
 }
