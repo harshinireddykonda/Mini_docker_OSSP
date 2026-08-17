@@ -1,0 +1,34 @@
+MINI DOCKER CONTAINER MANAGER
+WEEK 1 DOCUMENTATION
+
+Week 1 focuses on the foundation of the project.
+
+Objectives:
+1. Set up the Linux development environment.
+2. Create the project structure.
+3. Implement an interactive REPL.
+4. Create a Makefile.
+5. Initialize Git.
+6. Prepare the project for GitHub.
+
+Implemented:
+- src/main.c
+- include/shell.h
+- Makefile
+- README.md
+- LICENSE
+- .gitignore
+
+REPL:
+The REPL continuously accepts user input.
+If the user enters "exit", the program terminates.
+Otherwise, the entered command is displayed.
+
+Build:
+make
+
+Run:
+make run
+
+Clean:
+make clean

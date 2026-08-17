@@ -1,0 +1,27 @@
+# Mini Docker Container Manager
+
+A lightweight command-line container manager developed as part of the Operating Systems and Systems Programming project.
+
+## Week 1 Features
+
+- Interactive REPL loop
+- Makefile-based build
+- Git repository
+- Linux development environment
+
+## Project Structure
+
+```text
+MiniDocker/
+├── src/
+│   └── main.c
+├── include/
+│   └── shell.h
+├── docs/
+├── tests/
+├── screenshots/
+├── bin/
+├── Makefile
+├── README.md
+├── LICENSE
+└── .gitignore
