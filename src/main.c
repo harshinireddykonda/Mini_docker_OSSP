@@ -5,6 +5,7 @@
 #include "../include/shell.h"
 #include "../include/input.h"
 #include "../include/parser.h"
+#include "../include/builtin.h"
 #include "../include/process.h"
 
 int main()
@@ -32,7 +33,10 @@ int main()
 
         if (tokens[0] != NULL)
         {
-            execute(tokens);
+            if (execute_builtin(tokens) == 0)
+            {
+                execute(tokens);
+            }
         }
 
         free_tokens(tokens);
