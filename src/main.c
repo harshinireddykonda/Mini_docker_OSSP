@@ -7,9 +7,12 @@
 #include "../include/parser.h"
 #include "../include/builtin.h"
 #include "../include/process.h"
+#include "../include/signals.h"
 
 int main()
 {
+    initialize_signals();
+
     char *line;
     char **tokens;
 
