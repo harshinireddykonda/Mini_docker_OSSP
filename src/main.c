@@ -10,22 +10,23 @@
 #include "../include/signals.h"
 #include "../include/pipes.h"
 #include "../include/redirect.h"
+#include "../include/thread.h"
 
 int main(void)
 {
     char *line;
     char **tokens;
 
-    /* Initialize signal handling */
     initialize_signals();
+
+    /* Start Week 10 background monitoring thread */
+    start_monitor_thread();
 
     while (1)
     {
-        /* Display shell prompt */
         printf("myshell> ");
         fflush(stdout);
 
-        /* Read command */
         line = read_line();
 
         if (line == NULL)
@@ -34,7 +35,6 @@ int main(void)
             break;
         }
 
-        /* Ignore empty commands */
         if (strlen(line) == 0)
         {
             free(line);
@@ -42,9 +42,7 @@ int main(void)
         }
 
         /*
-         * Handle pipe commands
-         * Example:
-         * ls | wc
+         * Week 8: Pipe handling
          */
         if (strchr(line, '|') != NULL)
         {
@@ -79,7 +77,7 @@ int main(void)
         }
 
         /*
-         * Handle exit command
+         * Exit command
          */
         if (strcmp(line, "exit") == 0)
         {
@@ -87,9 +85,6 @@ int main(void)
             break;
         }
 
-        /*
-         * Parse normal command
-         */
         tokens = parse_line(line);
 
         if (tokens == NULL)
@@ -99,9 +94,9 @@ int main(void)
         }
 
         /*
-         * First check built-in commands.
-         * If it is not a built-in, check for redirection.
-         * If there is no redirection, execute normally.
+         * Built-in commands
+         * Redirection
+         * External commands
          */
         if (execute_builtin(tokens) == 0)
         {
@@ -111,7 +106,6 @@ int main(void)
             }
         }
 
-        /* Free allocated memory */
         free_tokens(tokens);
         free(line);
     }
